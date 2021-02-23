@@ -302,3 +302,57 @@ main {
   border: none;
   background: none;
 }
+
+@media screen and (max-width: 768px) {
+  main {
+    flex-direction: row;
+    width: 90%;
+    height: 90%;
+  }
+
+  .player {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .btn {
+    padding: 0.1rem 1rem;
+    font-size: small;
+  }
+
+  .btn--new {
+    position: absolute;
+    top: 7%;
+  }
+  .btn--roll {
+    position: absolute;
+    top: 50%;
+  }
+  .btn--hold {
+    position: absolute;
+    top: 60%;
+  }
+
+  .btn--modal {
+    position: absolute;
+    top: 94%;
+  }
+
+  .name {
+    position: relative;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .snackbar {
+    font-size: 1rem;
+  }
+
+  .current {
+    width: 80%;
+  }
+}
