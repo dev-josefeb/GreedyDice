@@ -195,33 +195,23 @@ main {
 .snackbar {
   display: flex;
   min-width: 250px; /* Set a default minimum width */
-  /*margin-left: -125px; /* Divide value of min-width by 2 */
   background-color: #333; /* Black background color */
   color: #fff; /* White text color */
   text-align: center; /* Centered text */
   padding: 16px; /* Padding */
   position: fixed; /* Sit on top of the screen */
   z-index: 1; /* Add a z-index if needed */
-  /*left: 50%; /* Center the snackbar */
   top: 30px; /* 30px from the bottom */
   font-size: 4rem;
   border-radius: 5rem;
-  transition: all 0.5s ease-in;
+  opacity: 0.8;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: 0.3s;
 }
 
 .hidden {
   display: none;
 }
-
-/* Show the snackbar when clicking on a button (class added with JavaScript)
-/* #snackbar { 
-  visibility: visible; /* Show the snackbar */
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-  However, delay the fade out process for 2.5 seconds 
-
-} */
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {

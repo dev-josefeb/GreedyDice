@@ -4,7 +4,7 @@ let currentPlayer = 0;
 let scores = [0, 0];
 let activeScore = 0;
 const WINNING_SCORE = 20;
-const isPlaying = true;
+let isPlaying = true;
 
 const player1El = document.querySelector(`.player--0`);
 const player2El = document.querySelector(`.player--1`);
@@ -58,10 +58,21 @@ function onHoldClicked() {
   if (scores[currentPlayer] >= WINNING_SCORE) {
     player1El.classList.toggle('player--active');
     player2El.classList.toggle('player--active');
+
+    document.getElementById(`score--${currentPlayer}`).textContent =
+      scores[currentPlayer];
+    document.getElementById(`current--${currentPlayer}`).textContent = 0;
     document
       .querySelector(`.player--${currentPlayer}`)
       .classList.add('player--winner');
+
     document.querySelector('.snackbar').classList.remove('hidden');
+    document.querySelector(
+      '.snackbar'
+    ).textContent = `🎊 Congratulations Player ${
+      currentPlayer === 0 ? 1 : 2
+    } for winning! 🎊`;
+
     isPlaying = false;
     return;
   }
@@ -74,7 +85,7 @@ function onHoldClicked() {
 function setStartConditions() {
   diceEl.classList.add('hidden');
   document.querySelector('.snackbar').classList.add('hidden');
-
+  isPlaying = true;
   player1El.classList.remove('player--winner');
   player2El.classList.remove('player--winner');
   scorePlayer1El.textContent = 0;
