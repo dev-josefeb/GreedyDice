@@ -42,7 +42,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.75s;
+  transition: none 0.75s;
 }
 
 /* ELEMENTS */
@@ -85,7 +85,7 @@ main {
   width: 65%;
   padding: 2rem;
   text-align: center;
-  transition: all 0.75s;
+  transition: none 0.75s;
 }
 
 .current-label {
@@ -112,7 +112,7 @@ main {
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 400;
-  transition: all 0.2s;
+  transition: none 0.2s;
 
   background-color: white;
   background-color: rgba(255, 255, 255, 0.6);
@@ -127,6 +127,31 @@ main {
   font-size: 2.4rem;
   display: inline-block;
   margin-right: 0.7rem;
+}
+
+.btn--replay {
+  color: #444;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: none 0.2s;
+
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  outline: none;
+  padding: 0.7rem 2.5rem;
+  border-radius: 50rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+}
+
+.btn--replay:active {
+  transform: scale(1.1);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
 .btn--new {
@@ -158,7 +183,7 @@ main {
 }
 
 .player--winner {
-  background-color: #2f2f2f;
+  background-color: #011f0d;
 }
 
 .player--winner .name {
@@ -166,6 +191,79 @@ main {
   color: #c7365f;
 }
 
+/* The snackbar - position it at the bottom and in the middle of the screen */
+.snackbar {
+  display: flex;
+  min-width: 250px; /* Set a default minimum width */
+  /*margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  /*left: 50%; /* Center the snackbar */
+  top: 30px; /* 30px from the bottom */
+  font-size: 4rem;
+  border-radius: 5rem;
+  transition: all 0.5s ease-in;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
 .hidden {
   display: none;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript)
+/* #snackbar { 
+  visibility: visible; /* Show the snackbar */
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds 
+
+} */
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
 }
