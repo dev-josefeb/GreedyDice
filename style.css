@@ -165,7 +165,8 @@ main {
 }
 
 .btn--modal {
-  top: 85rem;
+  position: absolute;
+  top: 90%;
   color: white;
   background-color: #04e2f199;
 }
