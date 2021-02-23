@@ -1,7 +1,6 @@
 'use strict';
 let currentPlayer = 0;
-let scorePlayer1 = 0;
-let scorePlayer2 = 0;
+let scores = [0, 0];
 let activeScore = 0;
 const WINNING_SCORE = 50;
 
@@ -43,27 +42,17 @@ function generateRandomNumber() {
 }
 
 function onHoldClicked() {
-  let scorePlayer = currentPlayer === 0 ? scorePlayer1 : scorePlayer2;
-  scorePlayer += activeScore;
+  scores[currentPlayer] += activeScore;
 
-  if (currentPlayer === 0) {
-    scorePlayer1 = scorePlayer;
-    if (scorePlayer1 >= WINNING_SCORE) {
-      alert('Congratulations player 1 won!');
-      setStartConditions();
-      return;
-    }
-  } else {
-    scorePlayer2 = scorePlayer;
-    if (scorePlayer2 >= WINNING_SCORE) {
-      alert('Congratulations player 2 won!');
-      setStartConditions();
-      return;
-    }
+  if (scores[currentPlayer] >= WINNING_SCORE) {
+    alert(`Congratulations player ${currentPlayer === 0 ? 1 : 2} won!`);
+    setStartConditions();
+    return;
   }
-  document.getElementById(`score--${currentPlayer}`).textContent = scorePlayer;
+
+  document.getElementById(`score--${currentPlayer}`).textContent =
+    scores[currentPlayer];
   document.getElementById(`current--${currentPlayer}`).textContent = 0;
-  activeScore = 0;
   switchPlayers();
 }
 
@@ -73,12 +62,11 @@ function setStartConditions() {
   document.getElementById(`score--1`).textContent = 0;
   document.getElementById(`current--0`).textContent = 0;
   document.getElementById(`current--1`).textContent = 0;
-  scorePlayer1 = scorePlayer2 = activeScore = 0;
+  scores[0] = scores[1] = activeScore = 0;
   if (currentPlayer === 1) switchPlayers();
 }
 
 function switchPlayers() {
-  // currentPlayer = currentPlayer === 0 ? 1 : 0;
   document
     .querySelector(`.player--${currentPlayer}`)
     .classList.remove('player--active');
