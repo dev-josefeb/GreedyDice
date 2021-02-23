@@ -1,20 +1,15 @@
 'use strict';
-let activePlayer = 'player1';
+let currentPlayer = 0;
 let scorePlayer1 = 0;
 let scorePlayer2 = 0;
 let activeScore = 0;
 const WINNING_SCORE = 50;
 
-let player1El = document.querySelector('.player--0');
-let player2El = document.querySelector('.player--1');
-let scorePlayer1El = document.getElementById('score--0');
-let scorePlayer2El = document.getElementById('score--1');
-
-let currentPlayer1El = document.getElementById('current--0');
-let currentPlayer2El = document.getElementById('current--1');
+let playerEl = document.querySelector(`.player--${currentPlayer}`);
+let scorePlayerEl = document.getElementById(`score--${currentPlayer}`);
+let currentPlayerEl = document.getElementById(`current--${currentPlayer}`);
 
 let diceEl = document.querySelector('.dice');
-
 let buttonNewGame = document.querySelector('.btn--new');
 let buttonRollDice = document.querySelector('.btn--roll');
 let buttonHold = document.querySelector('.btn--hold');
@@ -33,14 +28,13 @@ function onRollClicked() {
   diceEl.setAttribute('src', `images/dice-${diceValue}.png`);
 
   if (diceValue === 1) {
-    if (activePlayer === 'player1') currentPlayer1El.textContent = 0;
-    else currentPlayer2El.textContent = 0;
-
+    document.getElementById(`current--${currentPlayer}`).textContent = 0;
     switchPlayers();
   } else {
     activeScore += diceValue;
-    if (activePlayer === 'player1') currentPlayer1El.textContent = activeScore;
-    else currentPlayer2El.textContent = activeScore;
+    document.getElementById(
+      `current--${currentPlayer}`
+    ).textContent = activeScore;
   }
 }
 
@@ -49,58 +43,49 @@ function generateRandomNumber() {
 }
 
 function onHoldClicked() {
-  if (activePlayer === 'player1') {
-    scorePlayer1 += activeScore;
+  let scorePlayer = currentPlayer === 0 ? scorePlayer1 : scorePlayer2;
+  scorePlayer += activeScore;
 
+  if (currentPlayer === 0) {
+    scorePlayer1 = scorePlayer;
     if (scorePlayer1 >= WINNING_SCORE) {
       alert('Congratulations player 1 won!');
       setStartConditions();
       return;
     }
-
-    scorePlayer1El.textContent = scorePlayer1;
-    currentPlayer1El.textContent = 0;
   } else {
-    scorePlayer2 += activeScore;
-
+    scorePlayer2 = scorePlayer;
     if (scorePlayer2 >= WINNING_SCORE) {
       alert('Congratulations player 2 won!');
       setStartConditions();
       return;
     }
-
-    scorePlayer2El.textContent = scorePlayer2;
-    currentPlayer2El.textContent = 0;
   }
-
+  document.getElementById(`score--${currentPlayer}`).textContent = scorePlayer;
+  document.getElementById(`current--${currentPlayer}`).textContent = 0;
   activeScore = 0;
   switchPlayers();
 }
 
 function setStartConditions() {
   diceEl.classList.add('hidden');
-  scorePlayer1El.textContent = 0;
-  scorePlayer2El.textContent = 0;
-  currentPlayer1El.textContent = 0;
-  currentPlayer2El.textContent = 0;
-  scorePlayer1 = 0;
-  scorePlayer2 = 0;
-  activeScore = 0;
-  if (activePlayer === 'player2') switchPlayers();
+  document.getElementById(`score--0`).textContent = 0;
+  document.getElementById(`score--1`).textContent = 0;
+  document.getElementById(`current--0`).textContent = 0;
+  document.getElementById(`current--1`).textContent = 0;
+  scorePlayer1 = scorePlayer2 = activeScore = 0;
+  if (currentPlayer === 1) switchPlayers();
 }
 
 function switchPlayers() {
-  if (activePlayer === 'player1') {
-    player1El.classList.remove('player--active');
-    player2El.classList.add('player--active');
-    activePlayer = 'player2';
-    currentPlayer1El.textContent = 0;
-  } else {
-    player2El.classList.remove('player--active');
-    player1El.classList.add('player--active');
-    activePlayer = 'player1';
-    currentPlayer2El.textContent = 0;
-  }
-
+  // currentPlayer = currentPlayer === 0 ? 1 : 0;
+  document
+    .querySelector(`.player--${currentPlayer}`)
+    .classList.remove('player--active');
+  document.getElementById(`current--${currentPlayer}`).textContent = 0;
+  currentPlayer = currentPlayer === 0 ? 1 : 0;
+  document
+    .querySelector(`.player--${currentPlayer}`)
+    .classList.add('player--active');
   activeScore = 0;
 }
