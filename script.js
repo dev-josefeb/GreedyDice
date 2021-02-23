@@ -92,7 +92,7 @@ function setStartConditions() {
   scorePlayer1 = 0;
   scorePlayer2 = 0;
   activeScore = 0;
-  activePlayer = 'player1';
+  if (activePlayer === 'player2') switchPlayers();
 }
 
 function switchPlayers() {
