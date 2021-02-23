@@ -1,5 +1,4 @@
 'use strict';
-let rolledDiceValue;
 let activePlayer = 'player1';
 let scorePlayer1 = 0;
 let scorePlayer2 = 0;
@@ -29,18 +28,17 @@ buttonHold.addEventListener('click', onHoldClicked);
 setStartConditions();
 
 function onRollClicked() {
-  rolledDiceValue = generateRandomNumber();
-  console.log(rolledDiceValue);
-  diceEl.setAttribute('src', `images/dice-${rolledDiceValue}.png`);
+  let diceValue = generateRandomNumber();
   diceEl.classList.remove('hidden');
+  diceEl.setAttribute('src', `images/dice-${diceValue}.png`);
 
-  if (rolledDiceValue === 1) {
+  if (diceValue === 1) {
     if (activePlayer === 'player1') currentPlayer1El.textContent = 0;
     else currentPlayer2El.textContent = 0;
 
     switchPlayers();
   } else {
-    activeScore += rolledDiceValue;
+    activeScore += diceValue;
     if (activePlayer === 'player1') currentPlayer1El.textContent = activeScore;
     else currentPlayer2El.textContent = activeScore;
   }
@@ -48,10 +46,6 @@ function onRollClicked() {
 
 function generateRandomNumber() {
   return Math.trunc(Math.random() * 6) + 1;
-}
-
-function onNewClicked() {
-  setStartConditions();
 }
 
 function onHoldClicked() {
