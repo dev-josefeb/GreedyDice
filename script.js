@@ -104,13 +104,11 @@ function closeModal() {
 }
 
 function setWinningUI() {
-  player1El.classList.toggle('player--active');
-  player2El.classList.toggle('player--active');
-
   document.getElementById(`score--${currentPlayer}`).textContent = scores[currentPlayer];
   document.getElementById(`current--${currentPlayer}`).textContent = 0;
   document.querySelector(`.player--${currentPlayer}`).classList.add('player--winner');
 
+  diceEl.classList.add('hidden');
   buttonHold.classList.add('hidden');
   buttonRollDice.classList.add('hidden');
 
