@@ -36,8 +36,7 @@ btnOpenModal.addEventListener('click', openModal);
 overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape' && !modal.classList.contains('hidden'))
-    closeModal();
+  if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
 });
 
 function onRollClicked() {
@@ -54,9 +53,7 @@ function onRollClicked() {
   }
 
   activeScore += diceValue;
-  document.getElementById(
-    `current--${currentPlayer}`
-  ).textContent = activeScore;
+  document.getElementById(`current--${currentPlayer}`).textContent = activeScore;
 }
 
 function generateRandomNumber() {
@@ -74,8 +71,7 @@ function onHoldClicked() {
     return;
   }
 
-  document.getElementById(`score--${currentPlayer}`).textContent =
-    scores[currentPlayer];
+  document.getElementById(`score--${currentPlayer}`).textContent = scores[currentPlayer];
   switchPlayers();
 }
 
@@ -111,22 +107,15 @@ function setWinningUI() {
   player1El.classList.toggle('player--active');
   player2El.classList.toggle('player--active');
 
-  document.getElementById(`score--${currentPlayer}`).textContent =
-    scores[currentPlayer];
+  document.getElementById(`score--${currentPlayer}`).textContent = scores[currentPlayer];
   document.getElementById(`current--${currentPlayer}`).textContent = 0;
-  document
-    .querySelector(`.player--${currentPlayer}`)
-    .classList.add('player--winner');
+  document.querySelector(`.player--${currentPlayer}`).classList.add('player--winner');
 
   buttonHold.classList.add('hidden');
   buttonRollDice.classList.add('hidden');
 
   document.querySelector('.snackbar').classList.remove('hidden');
-  document.querySelector(
-    '.snackbar'
-  ).textContent = `🎊 Congratulations to Player ${
-    currentPlayer === 0 ? 1 : 2
-  } for winning! 🎊`;
+  document.querySelector('.snackbar').textContent = `🎊 Congratulations to Player ${currentPlayer === 0 ? 1 : 2} for winning! 🎊`;
 }
 
 function setStartupUI() {
